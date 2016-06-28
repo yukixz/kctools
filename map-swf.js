@@ -1,3 +1,5 @@
+#!/usr/bin/env node
+
 // Map ID
 const mapArea = 33
 const mapNo = 1
@@ -20,8 +22,7 @@ console.log("RND1", JSON.stringify(RND1))
 // Format: 33 a b c d 32 j k l
 let kfile = []
 ;(function () {
-  let area = 0
-  let file = ''
+  let area = 0, file = ''
   for (let rnd of RND1) {
     rnd = parseInt(rnd, 16)
     if (rnd < 90) {
@@ -42,8 +43,8 @@ console.log("kfile", JSON.stringify(kfile))
 // Find No.`mapNo` of `kfile[i][0] == areaID`, and its file name is `kfile[i][1]`
 ;(function () {
   let i = 0
-  for (let kf of kfile) {
-    let area = kf[0], file = kf[1]
+  for (let _ of kfile) {
+    let area = _[0], file = _[1]
     if (area === mapArea) {
       i += 1
       if (i === mapNo)
