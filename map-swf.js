@@ -27,15 +27,16 @@ let kfile = []
     rnd = parseInt(rnd, 16)
     if (rnd < 90) {
       if (file !== '') {
+        area = parseInt(area.toString(16))
         kfile.push([area, file])
         file = ''
       }
-      area = parseInt(rnd.toString(16))
+      area = rnd
     } else {
       file += String.fromCharCode(rnd)  // 91=a, 92=b, ...
     }
   }
-  kfile.push([area, file])  // Seems the last item is an exception?
+  kfile.push([area, file])  // Seems last item needn't to convert
 })()
 console.log("kfile", JSON.stringify(kfile))
 
