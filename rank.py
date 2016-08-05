@@ -16,11 +16,12 @@ for i in range(10):
     MAGIC[i] = Il[n]
 
 # `_l_` is refactored from 'core.apis._APIBaseS_/_l_'
-# Get first digit of the magic number
+# Get the first two digits of the magic number
 def _l_(id):
-    return int(str(MAGIC[id % 10])[0])
+    return int(str(MAGIC[id % 10])[0:2])
 
 # `rank_rate` is refactored from 'scene.record.models.RankData/RankData'
 # We assume that it always is even divisible.
-def rank_rate(api_rate, api_rank, member_id):
-    return api_rate / api_rank / _l_(member_id)
+def rank_rate(member_id, rank_no, obfs_rate):
+    MAGIC_R_NUMS = [ 8831, 1201, 1175, 555, 4569, 4732, 3779, 4568, 5695, 4619, 4912, 5669, 6569 ]
+    return obfs_rate / MAGIC_R_NUMS[rank_no % 13] / _l_(member_id) - 73 - 18
