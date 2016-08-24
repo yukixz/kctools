@@ -1,12 +1,19 @@
 #!/usr/bin/env python3
 
+import sys
 from math import sqrt
 
 # `Il` is extracted from 'core.apis._APIBaseS_/Il'
-Il = [3666, 2087, 3047, 2139, 5584, 4131817, 1033183, 7049, 4878, 5423, 13,
+# 2139 -> 2039 for hard correction
+Il = [3666, 2087, 3047, 2039, 5584, 4131817, 1033183, 7049, 4878, 5423, 13,
       7267, 3791, 10, 4397, 9502, 1000, 1876163]
 # Maigc number is calculated from 'core.apis._APIBaseS_/I1'
 MAGIC_13 = str(sqrt(13))
+
+if sys.version_info < (3, 0):
+    # Python 2.x hard code
+    MAGIC_13 = '3.605551275463989'
+
 MAGIC = [-1] * 10
 for i in range(10):
     n = 0
