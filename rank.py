@@ -27,7 +27,8 @@ def _l_(id):
     return int(str(MAGIC[id % 10])[0:2])
 
 # Magic R is extracted from 'scene.record.models.RankData/RankData'
-MAGIC_R = [ 8831, 1201, 1175, 555, 4569, 4732, 3779, 4568, 5695, 4619, 4912, 5669, 6569 ]
+MAGIC_R = [8831, 1201, 1175, 555, 4569, 4732, 3779, 4568,
+           5695, 4619, 4912, 5669, 6569]
 # `real_rate` is refactored from 'scene.record.models.RankData/RankData'
 # We assume that it always is even divisible.
 def real_rate(login_member_id, rank_no, rank_rate):
