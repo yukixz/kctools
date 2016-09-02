@@ -1,3 +1,6 @@
+#!/usr/bin/env python3
+# LICENSE: AGPLv3
+
 """针对网页游戏《舰队collection》的认证类。"""
 
 import aiohttp
@@ -7,8 +10,11 @@ import re
 import time
 from urllib.parse import urlparse, parse_qs
 
-from base import config
-from auth.exceptions import OOIAuthException
+
+class OOIAuthException(Exception):
+    def __init__(self, message):
+        super().__init__(self)
+        self.message = message
 
 
 class KancolleAuth:
@@ -71,12 +77,8 @@ class KancolleAuth:
         self.login_id = login_id
         self.password = password
 
-        # 初始化aiohttp会话，如果设定了代理服务器，则通过代理服务器发起会话
-        if config.proxy:
-            self.connector = aiohttp.ProxyConnector(proxy=config.proxy, force_close=False)
-        else:
-            self.connector = None
-        self.session = aiohttp.ClientSession(connector=self.connector)
+        # 初始化aiohttp会话
+        self.session = aiohttp.ClientSession(connector=None)
         self.headers = {'User-Agent': self.user_agent}
 
         # 初始化登录过程中所需的变量
