@@ -5,8 +5,8 @@ from math import sqrt
 
 # `Il` is extracted from 'core.apis._APIBaseS_/Il'
 # 2139 -> 2039 for hard correction
-Il = [7938, 3240, 2540, 2139, 4098, 4131817, 1033183, 3982, 3342, 5664, 13,
-      2943, 3791, 10, 2604, 5442, 1000, 1876163]
+Il = [8506, 6903, 9207, 2039, 2764, 4132653, 1033183, 2126, 5104, 7158, 13,
+      2001, 3791, 10, 2912, 4683, 1000, 1875979]
 # Maigc number is calculated from 'core.apis._APIBaseS_/I1'
 MAGIC_13 = str(sqrt(13))
 
