@@ -7,7 +7,6 @@ import time
 import traceback
 
 import requests
-import urllib3
 
 
 SERVERS = [
@@ -34,16 +33,15 @@ SERVERS = [
 ]
 
 PATHS = [
-    ('/kcs/Core.swf', 198723),
+    ('/kcs/Core.swf', 200919),
 
-    ('/kcs/resources/image/slotitem/card/181.png', 0),
-    ('/kcs/resources/image/slotitem/card/182.png', 0),
-    ('/kcs/resources/image/slotitem/card/183.png', 0),
-    ('/kcs/resources/image/slotitem/card/184.png', 0),
-    ('/kcs/resources/image/slotitem/card/185.png', 0),
-    ('/kcs/resources/image/slotitem/card/186.png', 0),
-    ('/kcs/resources/image/slotitem/card/187.png', 0),
-    ('/kcs/resources/image/slotitem/card/188.png', 0),
+    ('/kcs/resources/image/slotitem/card/194.png', 0),
+    ('/kcs/resources/image/slotitem/card/195.png', 0),
+    ('/kcs/resources/image/slotitem/card/196.png', 0),
+    ('/kcs/resources/image/slotitem/card/197.png', 0),
+    ('/kcs/resources/image/slotitem/card/198.png', 0),
+    ('/kcs/resources/image/slotitem/card/199.png', 0),
+    ('/kcs/resources/image/slotitem/card/200.png', 0),
 
     ('/kcs/resources/swf/ships/mhqqhhvvpzxg.swf', 364350),  # 3
     ('/kcs/resources/swf/ships/rzgndzraoddu.swf', 366662),  # 4
@@ -62,11 +60,7 @@ PATHS = [
     ('/kcs/resources/swf/ships/rybmohpldpuq.swf', 0),  # 342
     ('/kcs/resources/swf/ships/qtuuhjmqmvfh.swf', 0),  # 433
     ('/kcs/resources/swf/ships/wmebertagnxm.swf', 0),  # 438
-    ('/kcs/resources/swf/ships/lnltescodihe.swf', 0),  # 439
-    ('/kcs/resources/swf/ships/beymvxmvhoct.swf', 0),  # 444
     ('/kcs/resources/swf/ships/tvieoobotato.swf', 0),  # 457
-    ('/kcs/resources/swf/ships/grmdtyheocuc.swf', 0),  # 463
-    ('/kcs/resources/swf/ships/schftfqkstxa.swf', 0),  # 468
     ('/kcs/resources/swf/ships/fmsaumjkejlm.swf', 0),  # 472
     ('/kcs/resources/swf/ships/uesladlyqrru.swf', 0),  # 474
     ('/kcs/resources/swf/ships/sbvnvwfihmrd.swf', 0),  # 475
