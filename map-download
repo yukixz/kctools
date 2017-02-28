@@ -1,0 +1,46 @@
+#!/bin/bash
+
+set -x
+
+[[ -f Core-decode  ]] || exit 2
+[[ -f map-swf      ]] || exit 2
+[[ -f map-clear.js ]] || exit 2
+[[ -f logo04.png   ]] || exit 2
+which ffdec     1>/dev/null || exit 2
+which composite 1>/dev/null || exit 2
+which node      1>/dev/null || exit 2
+[[ -d node_modules ]] || exit 2
+
+# Decode
+[[ ! -f "Core.swf" ]] && echo "No Core.swf" && exit 1
+./Core-decode Core.swf Core.dec.swf
+
+# Extract
+which ffdec 1>/dev/null || exit 2
+ffdec -export script Core Core.dec.swf 1>/dev/null
+
+# Replace RND
+RND=$(grep "const RND:Array" Core/scripts/common/resources/MapResourceLoader.as | sed -E 's/^.+= //' | sed 's/;//')
+sed -i '' -E "s/(^const RND = ).*/\1${RND}/" map-swf
+
+# Decode RND
+MAP=$(./map-swf)
+
+# Download & Export
+mkdir -p final
+while read m h; do
+	[[ -z "${h}" ]] && continue
+	[[ -f "${m}.swf" ]] || wget "http://203.104.209.102/kcs/resources/swf/map/${h}.swf" -O "${m}.swf"
+	[[ ! -s "${m}.swf" ]] && echo "!! ${m}.swf illegal." && rm "${m}.swf" && continue
+	ffdec -export sprite "${m}" "${m}.swf" 1>/dev/null
+	composite -gravity northwest -geometry +600+370 logo04.png ${m}/*.map_1/1.png final/${m}.png
+	# Extract clear version
+	node --harmony "map-clear.js" "${m}.swf"
+	ffdec -export sprite "${m}_clear" "${m}_clear.swf" 1>/dev/null
+	composite -gravity northwest -geometry +600+370 logo04.png ${m}_clear/DefineSprite_55500/1.png final/${m}_clear.png
+	# Extract full version
+	# node kcmap.js icon
+	# phantomjs rasterize.js draw.svg draw.png
+	# composite draw.png map.png full.png
+	# composite -gravity northwest -geometry +600+370 logo04.png ${m}_clear/*.map_1/1.png final/${m}_clear.png
+done <<<"$MAP"

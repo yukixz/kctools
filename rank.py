@@ -4,7 +4,6 @@ import sys
 from math import sqrt
 
 # `Il` is extracted from 'core.apis._APIBaseS_/Il'
-# 2139 -> 2039 for hard correction
 Il = [4999, 2257, 7351, 2039, 6604, 4132653, 1033183, 2570, 4979, 6314, 13,
       5478, 3791, 10, 9640, 6707, 1000, 1875979]
 # Maigc number is calculated from 'core.apis._APIBaseS_/I1'
