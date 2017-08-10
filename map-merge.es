@@ -68,14 +68,18 @@ function getExtraNode(id, childId) {
   const idTags = ['characterId', 'characterID', 'shapeId', 'spriteId', 'bitmapId']
   spsXML.map((spXML, i) => {
     console.log(`Merging`, i)
-    const idBase = (i + 1) * 1000
+    const idBase = (i + 1) * 10000
     const spCnt  = spXML.get(`/swf/tags`)
 
     // Merge SP map to MAP as extra
     const spSC  = getSymbolClass(spXML)
-    const spId  = _.findKey(spSC, (n) => n.startsWith('scene.sally.mc.MCCellSP'))
-    const spRef = getExtraNode(idBase, idBase + Number(spId))
-    mapCnt.addChild(spRef)
+    _.forIn(spSC, (spTag, spId) => {
+      if (spTag.startsWith('scene.sally.mc.MCCellSP385') == false) return
+      console.log(`Merging`, i, spTag)
+
+      const spRef = getExtraNode(idBase - Number(spId), idBase + Number(spId))
+      mapCnt.addChild(spRef)
+    })
 
     // Replace ID
     for (const tag of idTags) {

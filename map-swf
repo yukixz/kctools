@@ -42,7 +42,7 @@ let kfile = []
   const gc = {}
   for (const [area, file] of kfile) {
     gc[area] = (gc[area] || 0) + 1
-    // if (area === 37)
+    if (area === 37)
       console.log(`${area}_0${gc[area]} ${file}`)
   }
 })()
